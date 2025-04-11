@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mx-auto p-4">
+  <div class="bg-base-100 shadow-xl rounded-box">
+    <!-- Table Title and Search bar -->
+    <div class="flex flex-col lg:flex-row justify-between items-center p-4 border-b">
+      <h2 class="text-2xl font-bold mb-2 lg:mb-0">Журнал проходов</h2>
+      <div class="form-control w-full max-w-xs">
+        <div class="input-group">
+          <input type="text" placeholder="Поиск..." class="input input-bordered w-full" />
+          <button class="btn btn-square">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="overflow-x-auto">
+      <table class="table table-zebra w-full">
+        <thead>
+          <tr class="bg-primary bg-opacity-10">
+            <th class="text-primary-content">Дата и время</th>
+            <th class="text-primary-content">Направления</th>
+            <th class="text-primary-content">Фамилия</th>
+            <th class="text-primary-content">Имя</th>
+            <th class="text-primary-content">Отчество</th>
+            <th class="text-primary-content">Подразделение</th>
+            <th class="text-primary-content">Должность</th>
+            <th class="text-primary-content">Точка прохода</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for entrance in entrances %}
+          <tr class="hover cursor-pointer">
+            <td class="font-medium">{{entrance.entry_exit_date}}</td>
+            <td>
+              {% if entrance.entry_exit == "entry" %}
+                <div class="badge badge-success">{{entrance.entry_exit}}</div>
+              {% else %}
+                <div class="badge badge-error">{{entrance.entry_exit}}</div>
+              {% endif %}
+            </td>
+            <td>{{entrance.last_name}}</td>
+            <td>{{entrance.first_name}}</td>
+            <td>{{entrance.surname}}</td>
+            <td>
+              <div class="tooltip" data-tip="{{entrance.department}}">
+                {{entrance.department|truncatechars:20}}
+              </div>
+            </td>
+            <td>{{entrance.position}}</td>
+            <td>{{entrance.point_of_passage}}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Pagination -->
+    <div class="flex justify-center p-4">
+      <div class="btn-group">
+        <button class="btn btn-sm">«</button>
+        <button class="btn btn-sm">‹</button>
+        <button class="btn btn-sm btn-active">1</button>
+        <button class="btn btn-sm">2</button>
+        <button class="btn btn-sm">3</button>
+        <button class="btn btn-sm">›</button>
+        <button class="btn btn-sm">»</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

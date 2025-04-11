@@ -1,6 +1,7 @@
 from django.shortcuts import render
+from .models import PlanEntrance
 
 # Create your views here.
-def index(request):
-    context = {}
-    return render(request,'index.html', context)
+def list_entrances(request):
+    entrances = PlanEntrance.objects.filter()
+    return render(request, 'entrances/list_entrances.html', {'entrances': entrances})
