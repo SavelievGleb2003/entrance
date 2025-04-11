@@ -24,7 +24,8 @@ SECRET_KEY = 'django-insecure-7()-9a#b4^t%ba)p#mn)me4=8l2=h0#i7u2t26x6c^%s5o05&!
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
+LANGUAGE_CODE = 'ru'# Set Russian as default language
+TIME_ZONE = 'Europe/Kyiv'
 ALLOWED_HOSTS = []
 
 
@@ -127,13 +128,13 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+
+
 
 USE_I18N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
